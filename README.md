@@ -17,5 +17,4 @@ Key features include:
 
 By combining these features, CVE-Intel empowers analysts to simulate, analyze, and better defend against software vulnerabilities with enhanced precision and context.
 
-
-
+<img width="1920" height="1080" alt="Week 21 Presentation Slide" src="https://github.com/user-attachments/assets/cf1330b1-4bd0-4bfe-881f-1aa050b8addf" />

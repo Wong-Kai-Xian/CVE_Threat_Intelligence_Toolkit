@@ -1,2 +1,16 @@
 # CVE-Intel
-CVE-Intel is a cybersecurity platform that connects CVE data with MITRE ATT&amp;CK techniques. It provides automated behavior extraction and fast CVE lookup to help analysts simulate exploits, test defenses, and enhance threat intelligence.
+## Purpose
+
+CVE-Intel is a tool designed to provide security analysts with all the essential details needed to reconstruct and thoroughly understand a CVE (Common Vulnerabilities and Exposures). It consolidates critical information to enable deeper insight into each vulnerability, facilitating more effective analysis and response.
+
+Key features include:
+
+- Detailed CVE information including descriptions, proof-of-concept (PoC) code, and prerequisite environment data such as build numbers.
+- Quick download of the necessary environment components to facilitate realistic simulation of the CVE exploit.
+- LLM-based behavior extraction that analyzes input data like Process Monitor (Procmon) logs to identify key behaviors associated with the CVE.
+- Provides low-level context on exploit behavior, helping analysts gain a nuanced understanding of the attack techniques involved.
+
+By combining these features, CVE-Intel empowers analysts to simulate, analyze, and better defend against software vulnerabilities with enhanced precision and context.
+
+
+

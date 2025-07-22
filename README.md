@@ -5,10 +5,17 @@ CVE-Intel is a tool designed to provide security analysts with all the essential
 
 Key features include:
 
-- Detailed CVE information including descriptions, proof-of-concept (PoC) code, prerequisite environment data such as build numbers, and related MITRE ATT&CK techniques.
-- Quick download of the necessary environment components to facilitate realistic simulation of the CVE exploit.
-- LLM-based behavior extraction that analyzes input data like Process Monitor (Procmon) logs to identify key behaviors associated with the CVE.
-- Provides low-level context on exploit behavior, helping analysts gain a nuanced understanding of the attack techniques involved.
+- **Detailed CVE Information:**  
+  Provides comprehensive descriptions, proof-of-concept (PoC) code, prerequisite environment details such as build numbers, and maps related MITRE ATT&CK techniques to give analysts a full picture of the vulnerability and its exploit context.
+
+- **Quick Environment Setup:**  
+  Enables rapid download of required environment components, allowing users to efficiently set up realistic conditions for simulating the CVE exploit.
+
+- **LLM-Based Behavior Extraction:**  
+  Uses large language models to analyze input data such as Process Monitor (Procmon) logs, extracting key behaviors related to the CVE to highlight important exploit patterns.
+
+- **Low-Level Contextual Analysis:**  
+  Provides in-depth, low-level insights into exploit behavior, helping analysts gain a nuanced understanding of attacker techniques and improve detection strategies.
 
 By combining these features, CVE-Intel empowers analysts to simulate, analyze, and better defend against software vulnerabilities with enhanced precision and context.
 

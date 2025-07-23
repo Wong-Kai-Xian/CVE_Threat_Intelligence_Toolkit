@@ -22,6 +22,7 @@ The diagram below illustrates the overall workflow of the system, including the 
 
 ![System Architecture](./img/system.png)
 
+---
 
 ## Introduction
 
@@ -42,12 +43,11 @@ The system consists of several key tools designed to simplify CVE analysis and s
 
 ---
 
-## CVE Search Tool Design
+## Project Design
+This section describes the design architecture and processing workflow behind each tool in the system. Each tool is built with a modular and API-driven approach, allowing them to function independently while sharing common components.
 
-The **CVE Search Tool** is a core component designed to provide comprehensive information about a CVE, including related MITRE ATT&CK techniques, and help analysts reconstruct the vulnerability context.
-
-### Overview
-The **CVE Search Tool** provides users with comprehensive details about a given CVE, including:
+### CVE Search Tool Design (Overview)
+The **CVE Search Tool** is a core component designed to provide comprehensive information about a CVE, including:
 
 - **Vulnerable OS Versions:**  Lists operating system versions that are vulnerable and can be used to reconstruct the CVE exploit environment.
 

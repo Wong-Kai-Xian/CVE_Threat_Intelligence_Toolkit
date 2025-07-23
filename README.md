@@ -68,7 +68,7 @@ When a user inputs a CVE ID, the system retrieves the CVE description and applie
 3. **Sentence Extraction with LLM:**  Gemini 2.5 Pro analyzes the description and extracts sentences categorized as Exploitation Technique, Primary Technique, and Secondary Technique.
 4. **Text Embedding & Similarity Search:**  Each extracted sentence is transformed into a vector representation using Sentence-BERT. At the same time, the entire MITRE ATT&CK technique database is also encoded into vector embeddings and indexed using FAISS for efficient similarity search. The system then compares the sentence embeddings against the technique embeddings to identify the top 10 most semantically relevant techniques for each category.
 5. **CVE Mapping with LLM:**  The candidate techniques are passed to Gemini 2.5 Pro again to reason and select the most suitable MITRE ATT&CK techniques for each category based on the CVE context.
-6. **Display Results:**  The final mapped techniqueare presented to the user.
+6. **Display Results:**  The final mapped technique are presented to the user.
 
 ---
 

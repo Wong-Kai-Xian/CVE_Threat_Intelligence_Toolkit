@@ -60,7 +60,7 @@ The CVE description is categorized into three technique types:
 This follows the methodology from the [Center for Threat-Informed Defense's Mappings Explorer](https://center-for-threat-informed-defense.github.io/mappings-explorer/about/methodology/cve-methodology/).
 
 ### Processing Steps
-
+![System Architecture](./img/mapping.png)
 1. **User Input:**  The user enters a CVE ID into the system.
 2. **Fetch CVE Description:**  The tool retrieves the official CVE description from the CVELIST GitHub repository.
 3. **Sentence Extraction with LLM:**  Gemini 2.5 Pro analyzes the description and extracts sentences categorized as Exploitation Technique, Primary Technique, and Secondary Technique.

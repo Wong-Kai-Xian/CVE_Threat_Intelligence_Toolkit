@@ -11,7 +11,7 @@ Key features include:
 - **LLM-Based Behavior Extraction:** Uses large language models to analyze input data such as Process Monitor (Procmon) logs, extracting key behaviors related to the CVE to highlight important exploit patterns.
 - **Low-Level Contextual Analysis:** Provides in-depth, low-level insights into exploit behavior, helping analysts gain a nuanced understanding of attacker techniques and improve detection strategies.
 
-By combining these features, CVE-Intel empowers analysts to simulate, analyze, and better defend against software vulnerabilities with enhanced precision and context.
+By combining these features, CVE Threat Intelligence Toolkit empowers analysts to simulate, analyze, and better defend against software vulnerabilities with enhanced precision and context.
 
 **System Overview:**
 The diagram below illustrates the overall workflow of the system, including the ngrok web UI.
@@ -22,9 +22,9 @@ The diagram below illustrates the overall workflow of the system, including the 
 
 ## Introduction
 
-In today’s rapidly evolving cybersecurity landscape, timely and precise understanding of software vulnerabilities is critical for effective defense. **CVE-Intel** is a tool designed to empower security analysts by consolidating all essential information related to a specific CVE (Common Vulnerabilities and Exposures) in one place. It enables analysts to reconstruct the vulnerability, explore its exploit mechanisms, and simulate attacks in realistic environments.
+In today’s rapidly evolving cybersecurity landscape, timely and precise understanding of software vulnerabilities is critical for effective defense. **CVE Threat Intelligence Toolkit** is a tool designed to empower security analysts by consolidating all essential information related to a specific CVE (Common Vulnerabilities and Exposures) in one place. It enables analysts to reconstruct the vulnerability, explore its exploit mechanisms, and simulate attacks in realistic environments.
 
-By combining detailed CVE descriptions, proof-of-concept codes, patch analysis, and MITRE ATT&CK technique mappings, CVE-Intel provides a comprehensive contextual view of each vulnerability. Leveraging large language models for behavior extraction from system logs, it further offers actionable insights into attacker behaviors and exploit techniques at a granular level. The workflow is shown below:
+By combining detailed CVE descriptions, proof-of-concept codes, patch analysis, and MITRE ATT&CK technique mappings, it provides a comprehensive contextual view of each vulnerability. Leveraging large language models for behavior extraction from system logs, it further offers actionable insights into attacker behaviors and exploit techniques at a granular level. The workflow is shown below:
 ![System Architecture](./img/architecture.png)
 
 The system consists of several key tools designed to simplify CVE analysis and simulation:

@@ -49,23 +49,17 @@ The **CVE Search Tool** is a core component designed to provide comprehensive in
 ### Overview
 The **CVE Search Tool** provides users with comprehensive details about a given CVE, including:
 
-- **Vulnerable OS Versions:**  
-  Lists operating system versions that are vulnerable and can be used to reconstruct the CVE exploit environment.
+- **Vulnerable OS Versions:**  Lists operating system versions that are vulnerable and can be used to reconstruct the CVE exploit environment.
 
-- **MITRE ATT&CK Mappings:**  
-  Displays related attacker techniques mapped to the CVE using the LLM-assisted mapping methodology.
+- **MITRE ATT&CK Mappings:**  Displays related attacker techniques mapped to the CVE using the LLM-assisted mapping methodology.
 
-- **CWE (Common Weakness Enumeration):**  
-  Shows the associated CWE identifiers that describe the type of vulnerability.
+- **CWE (Common Weakness Enumeration):**  Shows the associated CWE identifiers that describe the type of vulnerability.
 
-- **CVE Description:**  
-  Provides the official vulnerability description sourced from trusted repositories.
+- **CVE Description:**  Provides the official vulnerability description sourced from trusted repositories.
 
-- **Proof-of-Concept (PoC) GitHub URLs:**  
-  Links to public repositories containing exploit or demonstration code.
+- **Proof-of-Concept (PoC) GitHub URLs:**  Links to public repositories containing exploit or demonstration code.
 
-- **Reference URLs:**  
-  Additional external links for deeper research and context.
+- **Reference URLs:**  Additional external links for deeper research and context.
 
 ### CVE-to-MITRE ATT&CK Mapping Methodology
 
@@ -79,25 +73,17 @@ This follows the methodology from the [Center for Threat-Informed Defense's Mapp
 
 ### Processing Steps
 
-1. **User Input:**  
-   The user enters a CVE ID into the system.
+1. **User Input:**  The user enters a CVE ID into the system.
 
-2. **Fetch CVE Description:**  
-   The tool retrieves the official CVE description from the CVELIST GitHub repository.
+2. **Fetch CVE Description:**  The tool retrieves the official CVE description from the CVELIST GitHub repository.
 
-3. **Sentence Extraction with LLM:**  
-   Gemini 2.5 Pro analyzes the description and extracts sentences categorized as Exploitation Technique, Primary Technique, and Secondary Technique.
+3. **Sentence Extraction with LLM:**  Gemini 2.5 Pro analyzes the description and extracts sentences categorized as Exploitation Technique, Primary Technique, and Secondary Technique.
 
-4. **Text Embedding & Similarity Search:**  
-   Each extracted sentence is encoded with Sentence-BERT.  
-   The MITRE ATT&CK technique database is also encoded and indexed with FAISS.  
-   The system performs similarity search to find the top 10 relevant techniques per category.
+4. **Text Embedding & Similarity Search:**  Each extracted sentence is transformed into a vector representation using Sentence-BERT. At the same time, the entire MITRE ATT&CK technique database is also encoded into vector embeddings and indexed using FAISS for efficient similarity search. The system then compares the sentence embeddings against the technique embeddings to identify the top 10 most semantically relevant techniques for each category.
 
-5. **LLM Reasoning:**  
-   The candidate techniques are passed to Gemini 2.5 Pro again to reason and select the most suitable MITRE ATT&CK techniques for each category based on the CVE context.
+5. **CVE Mapping Agent:**  The candidate techniques are passed to Gemini 2.5 Pro again to reason and select the most suitable MITRE ATT&CK techniques for each category based on the CVE context.
 
-6. **Display Results:**  
-   The final mapped techniques, vulnerable OS versions, CWE info, PoC URLs, and references are presented to the user.
+6. **Display Results:**  The final mapped techniqueare presented to the user.
 
 ---
 

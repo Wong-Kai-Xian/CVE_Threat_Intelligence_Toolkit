@@ -6,13 +6,9 @@ CVE-Intel is a tool designed to provide security analysts with all the essential
 Key features include:
 
 - **Detailed CVE Information:** Provides comprehensive descriptions, proof-of-concept (PoC) code, prerequisite environment details such as build numbers, and maps related MITRE ATT&CK techniques to give analysts a full picture of the vulnerability and its exploit context.
-
 - **Patch Coverage Analyzer:** Given a patch (KB) number, the system identifies which CVEs have been addressed by it and highlights those that remain unpatched, helping analysts track remediation coverage and gaps in system security.
-
 - **Quick Environment Setup:** Enables rapid download of required environment components, allowing users to efficiently set up realistic conditions for simulating the CVE exploit.
-
 - **LLM-Based Behavior Extraction:** Uses large language models to analyze input data such as Process Monitor (Procmon) logs, extracting key behaviors related to the CVE to highlight important exploit patterns.
-
 - **Low-Level Contextual Analysis:** Provides in-depth, low-level insights into exploit behavior, helping analysts gain a nuanced understanding of attacker techniques and improve detection strategies.
 
 By combining these features, CVE-Intel empowers analysts to simulate, analyze, and better defend against software vulnerabilities with enhanced precision and context.
@@ -34,11 +30,8 @@ By combining detailed CVE descriptions, proof-of-concept codes, patch analysis, 
 The system consists of several key tools designed to simplify CVE analysis and simulation:
 
 - **CVE Search Tool:** Quickly retrieves detailed CVE info including descriptions, affected software, PoCs, and MITRE ATT&CK mappings.
-
 - **Patch Search Tool:** Identifies which CVEs are fixed or still vulnerable for a given patch (e.g., Windows KB number).
-
 - **ISO Search Tool:** Helps download and manage OS or VM ISO images to set up test environments matching CVE prerequisites.
-
 - **CVE Behavior Extractor:** Uses LLMs to analyze Procmon logs and automatically extract key exploit behaviors related to specific CVEs.
 
 ---
@@ -50,15 +43,10 @@ This section describes the design architecture and processing workflow behind ea
 The **CVE Search Tool** is a core component designed to provide comprehensive information about a CVE, including:
 
 - **Vulnerable OS Versions:**  Lists operating system versions that are vulnerable and can be used to reconstruct the CVE exploit environment.
-
 - **MITRE ATT&CK Mappings:**  Displays related attacker techniques mapped to the CVE using the LLM-assisted mapping methodology.
-
 - **CWE (Common Weakness Enumeration):**  Shows the associated CWE identifiers that describe the type of vulnerability.
-
 - **CVE Description:**  Provides the official vulnerability description sourced from trusted repositories.
-
 - **Proof-of-Concept (PoC) GitHub URLs:**  Links to public repositories containing exploit or demonstration code.
-
 - **Reference URLs:**  Additional external links for deeper research and context.
 
 ### CVE-to-MITRE ATT&CK Mapping Methodology
@@ -74,15 +62,10 @@ This follows the methodology from the [Center for Threat-Informed Defense's Mapp
 ### Processing Steps
 
 1. **User Input:**  The user enters a CVE ID into the system.
-
 2. **Fetch CVE Description:**  The tool retrieves the official CVE description from the CVELIST GitHub repository.
-
 3. **Sentence Extraction with LLM:**  Gemini 2.5 Pro analyzes the description and extracts sentences categorized as Exploitation Technique, Primary Technique, and Secondary Technique.
-
 4. **Text Embedding & Similarity Search:**  Each extracted sentence is transformed into a vector representation using Sentence-BERT. At the same time, the entire MITRE ATT&CK technique database is also encoded into vector embeddings and indexed using FAISS for efficient similarity search. The system then compares the sentence embeddings against the technique embeddings to identify the top 10 most semantically relevant techniques for each category.
-
 5. **CVE Mapping Agent:**  The candidate techniques are passed to Gemini 2.5 Pro again to reason and select the most suitable MITRE ATT&CK techniques for each category based on the CVE context.
-
 6. **Display Results:**  The final mapped techniqueare presented to the user.
 
 ---

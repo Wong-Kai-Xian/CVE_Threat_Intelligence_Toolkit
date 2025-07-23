@@ -60,6 +60,8 @@ The CVE description is categorized into three technique types:
 This follows the methodology from the [Center for Threat-Informed Defense's Mappings Explorer](https://center-for-threat-informed-defense.github.io/mappings-explorer/about/methodology/cve-methodology/).
 
 ### Processing Steps
+
+When a user inputs a CVE ID, the system retrieves the CVE description and applies a large language model (LLM) to extract meaningful sentences that represent potential attack behaviors. Each extracted sentence is encoded using Sentence-BERT to generate semantic embeddings. In parallel, the MITRE ATT&CK technique descriptions are pre-encoded and stored in a FAISS index. The system then performs similarity search between the sentence embeddings and the ATT&CK embeddings, retrieving the top 10 most relevant techniques for each sentence category. This allows accurate mapping between CVE behavior and MITRE tactics.
 ![System Architecture](./img/mapping.png)
 1. **User Input:**  The user enters a CVE ID into the system.
 2. **Fetch CVE Description:**  The tool retrieves the official CVE description from the CVELIST GitHub repository.

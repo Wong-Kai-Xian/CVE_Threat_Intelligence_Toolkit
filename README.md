@@ -1,7 +1,7 @@
-# CVE-Intel
+# CVE Threat Intelligence Toolkit
 ## Purpose
 
-CVE-Intel is a tool designed to provide security analysts with all the essential details needed to reconstruct and thoroughly understand a CVE (Common Vulnerabilities and Exposures). It consolidates critical information to enable deeper insight into each vulnerability, facilitating more effective analysis and response.
+CVE Threat Intelligence Toolkit is a tool designed to provide security analysts with all the essential details needed to reconstruct and thoroughly understand a CVE (Common Vulnerabilities and Exposures). It consolidates critical information to enable deeper insight into each vulnerability, facilitating more effective analysis and response.
 
 Key features include:
 

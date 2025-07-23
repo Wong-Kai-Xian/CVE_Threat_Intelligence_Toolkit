@@ -16,7 +16,7 @@ By combining these features, CVE Threat Intelligence Toolkit empowers analysts t
 **System Overview:**
 The diagram below illustrates the overall workflow of the system, including the ngrok web UI.
 
-![System Architecture](./img/system.png)
+![System Architecture](./img/system_overview.png)
 
 ---
 
@@ -25,7 +25,7 @@ The diagram below illustrates the overall workflow of the system, including the 
 In today’s rapidly evolving cybersecurity landscape, timely and precise understanding of software vulnerabilities is critical for effective defense. **CVE Threat Intelligence Toolkit** is a tool designed to empower security analysts by consolidating all essential information related to a specific CVE (Common Vulnerabilities and Exposures) in one place. It enables analysts to reconstruct the vulnerability, explore its exploit mechanisms, and simulate attacks in realistic environments.
 
 By combining detailed CVE descriptions, proof-of-concept codes, patch analysis, and MITRE ATT&CK technique mappings, it provides a comprehensive contextual view of each vulnerability. Leveraging large language models for behavior extraction from system logs, it further offers actionable insights into attacker behaviors and exploit techniques at a granular level. The workflow is shown below:
-![System Architecture](./img/architecture.png)
+![System Architecture](./img/system_architecture.png)
 
 The system consists of several key tools designed to simplify CVE analysis and simulation:
 

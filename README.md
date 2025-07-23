@@ -40,41 +40,66 @@ The system consists of several key tools designed to simplify CVE analysis and s
 
 - **CVE Behavior Extractor:** Uses LLMs to analyze Procmon logs and automatically extract key exploit behaviors related to specific CVEs.
 
+---
 
 ## CVE Search Tool Design
-
----
 
 The **CVE Search Tool** is a core component designed to provide comprehensive information about a CVE, including related MITRE ATT&CK techniques, and help analysts reconstruct the vulnerability context.
 
 ### Overview
+The **CVE Search Tool** provides users with comprehensive details about a given CVE, including:
 
-- When a user inputs a CVE ID, the system retrieves the CVE description from the **CVELIST GitHub repository**.
-- To provide related MITRE ATT&CK mappings, the tool uses the **Gemini 2.5 Pro** LLM for extraction.
+- **Vulnerable OS Versions:**  
+  Lists operating system versions that are vulnerable and can be used to reconstruct the CVE exploit environment.
 
-### Mapping Methodology
+- **MITRE ATT&CK Mappings:**  
+  Displays related attacker techniques mapped to the CVE using the LLM-assisted mapping methodology.
+
+- **CWE (Common Weakness Enumeration):**  
+  Shows the associated CWE identifiers that describe the type of vulnerability.
+
+- **CVE Description:**  
+  Provides the official vulnerability description sourced from trusted repositories.
+
+- **Proof-of-Concept (PoC) GitHub URLs:**  
+  Links to public repositories containing exploit or demonstration code.
+
+- **Reference URLs:**  
+  Additional external links for deeper research and context.
+
+### CVE-to-MITRE ATT&CK Mapping Methodology
 
 The CVE description is categorized into three technique types:
 
-1. Exploitation Technique  
-2. Primary Technique  
-3. Secondary Technique
+1. Exploitation Technique - the method (technique) used to exploit the vulnerability.
+2. Primary Impact - the initial benefit (impact) gained through exploitation of the vulnerability.
+3. Secondary Impact - what the adversary can do by gaining the benefit of the primary impact.
 
 This follows the methodology from the [Center for Threat-Informed Defense's Mappings Explorer](https://center-for-threat-informed-defense.github.io/mappings-explorer/about/methodology/cve-methodology/).
 
 ### Processing Steps
 
-1. **LLM Extraction:** Gemini 2.5 Pro extracts sentences relevant to each technique category.  
-2. **Embedding & Similarity Search:** Sentences and MITRE techniques are encoded with Sentence-BERT and compared using FAISS to find top similar techniques.  
-3. **LLM Reasoning:** Gemini 2.5 Pro selects the best techniques based on the description context.
+1. **User Input:**  
+   The user enters a CVE ID into the system.
+
+2. **Fetch CVE Description:**  
+   The tool retrieves the official CVE description from the CVELIST GitHub repository.
+
+3. **Sentence Extraction with LLM:**  
+   Gemini 2.5 Pro analyzes the description and extracts sentences categorized as Exploitation Technique, Primary Technique, and Secondary Technique.
+
+4. **Text Embedding & Similarity Search:**  
+   Each extracted sentence is encoded with Sentence-BERT.  
+   The MITRE ATT&CK technique database is also encoded and indexed with FAISS.  
+   The system performs similarity search to find the top 10 relevant techniques per category.
+
+5. **LLM Reasoning:**  
+   The candidate techniques are passed to Gemini 2.5 Pro again to reason and select the most suitable MITRE ATT&CK techniques for each category based on the CVE context.
+
+6. **Display Results:**  
+   The final mapped techniques, vulnerable OS versions, CWE info, PoC URLs, and references are presented to the user.
 
 ---
-
-### Why This Approach?
-
-- Ensures accuracy by combining LLMs and similarity search.  
-- Maintains up-to-date technique mappings despite LLM knowledge cutoffs.  
-- Aligns with industry-recognized methodology.
 
 
 

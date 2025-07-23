@@ -41,6 +41,41 @@ The system consists of several key tools designed to simplify CVE analysis and s
 - **CVE Behavior Extractor:** Uses LLMs to analyze Procmon logs and automatically extract key exploit behaviors related to specific CVEs.
 
 
+## CVE Search Tool Design
+
+---
+
+The **CVE Search Tool** is a core component designed to provide comprehensive information about a CVE, including related MITRE ATT&CK techniques, and help analysts reconstruct the vulnerability context.
+
+### Overview
+
+- When a user inputs a CVE ID, the system retrieves the CVE description from the **CVELIST GitHub repository**.
+- To provide related MITRE ATT&CK mappings, the tool uses the **Gemini 2.5 Pro** LLM for extraction.
+
+### Mapping Methodology
+
+The CVE description is categorized into three technique types:
+
+1. Exploitation Technique  
+2. Primary Technique  
+3. Secondary Technique
+
+This follows the methodology from the [Center for Threat-Informed Defense's Mappings Explorer](https://center-for-threat-informed-defense.github.io/mappings-explorer/about/methodology/cve-methodology/).
+
+### Processing Steps
+
+1. **LLM Extraction:** Gemini 2.5 Pro extracts sentences relevant to each technique category.  
+2. **Embedding & Similarity Search:** Sentences and MITRE techniques are encoded with Sentence-BERT and compared using FAISS to find top similar techniques.  
+3. **LLM Reasoning:** Gemini 2.5 Pro selects the best techniques based on the description context.
+
+---
+
+### Why This Approach?
+
+- Ensures accuracy by combining LLMs and similarity search.  
+- Maintains up-to-date technique mappings despite LLM knowledge cutoffs.  
+- Aligns with industry-recognized methodology.
+
 
 
 

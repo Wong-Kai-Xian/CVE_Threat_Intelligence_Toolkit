@@ -16,7 +16,7 @@ By combining these features, CVE Threat Intelligence Toolkit empowers analysts t
 **System Overview:**
 The diagram below illustrates the overall workflow of the system, including the ngrok web UI.
 
-![System Architecture](./img/system_overview.png)
+![System Overview](./img/SystemOverview.png)
 
 ---
 
@@ -25,7 +25,7 @@ The diagram below illustrates the overall workflow of the system, including the 
 In today’s rapidly evolving cybersecurity landscape, timely and precise understanding of software vulnerabilities is critical for effective defense. **CVE Threat Intelligence Toolkit** is a tool designed to empower security analysts by consolidating all essential information related to a specific CVE (Common Vulnerabilities and Exposures) in one place. It enables analysts to reconstruct the vulnerability, explore its exploit mechanisms, and simulate attacks in realistic environments.
 
 By combining detailed CVE descriptions, proof-of-concept codes, patch analysis, and MITRE ATT&CK technique mappings, it provides a comprehensive contextual view of each vulnerability. Leveraging large language models for behavior extraction from system logs, it further offers actionable insights into attacker behaviors and exploit techniques at a granular level. The workflow is shown below:
-![System Architecture](./img/system_architecture.png)
+![System Architecture](./img/SystemArchitecture.png)
 
 The system consists of several key tools designed to simplify CVE analysis and simulation:
 
@@ -62,7 +62,7 @@ This follows the methodology from the [Center for Threat-Informed Defense's Mapp
 ### Processing Steps
 
 When a user inputs a CVE ID, the system retrieves the CVE description and applies a large language model (LLM) to extract meaningful sentences that represent potential attack behaviors. Each extracted sentence is encoded using Sentence-BERT to generate semantic embeddings. In parallel, the MITRE ATT&CK technique descriptions are pre-encoded and stored in a FAISS index. The system then performs similarity search between the sentence embeddings and the ATT&CK embeddings, retrieving the top 10 most relevant techniques for each sentence category. This allows accurate mapping between CVE behavior and MITRE tactics.
-![Mapping Methodology](./img/mapping.png)
+![Mapping Workflow](./img/MappingWorkflow.png)
 1. **User Input:**  The user enters a CVE ID into the system.
 2. **Fetch CVE Description:**  The tool retrieves the official CVE description from the CVELIST GitHub repository.
 3. **Sentence Extraction with LLM:**  Gemini 2.5 Pro analyzes the description and extracts sentences categorized as Exploitation Technique, Primary Technique, and Secondary Technique.
@@ -71,7 +71,7 @@ When a user inputs a CVE ID, the system retrieves the CVE description and applie
 6. **Display Results:**  The final mapped technique are presented to the user.
 
 
-![Mapping Workflow](./img/mapping_workflow.png)
+![Mapping Methodology](./img/MappingMetholdology.png)
 
 ---
 

@@ -71,7 +71,7 @@ When a user inputs a CVE ID, the system retrieves the CVE description and applie
 6. **Display Results:**  The final mapped technique are presented to the user.
 
 
-![Mapping Methodology](./img/MappingMetholdology.png)
+![Mapping Methodology](./img/MappingMethodology.png)
 
 ---
 

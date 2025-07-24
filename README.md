@@ -59,7 +59,7 @@ The CVE description is categorized into three technique types:
 
 This follows the methodology from the [Center for Threat-Informed Defense's Mappings Explorer](https://center-for-threat-informed-defense.github.io/mappings-explorer/about/methodology/cve-methodology/).
 
-### Processing Steps
+### CVE-to-MITRE ATT&CK Mapping Workflow
 
 When a user inputs a CVE ID, the system retrieves the CVE description and applies a large language model (LLM) to extract meaningful sentences that represent potential attack behaviors. Each extracted sentence is encoded using Sentence-BERT to generate semantic embeddings. In parallel, the MITRE ATT&CK technique descriptions are pre-encoded and stored in a FAISS index. The system then performs similarity search between the sentence embeddings and the ATT&CK embeddings, retrieving the top 10 most relevant techniques for each sentence category. This allows accurate mapping between CVE behavior and MITRE tactics.
 ![Mapping Workflow](./img/MappingWorkflow.png)
@@ -70,7 +70,7 @@ When a user inputs a CVE ID, the system retrieves the CVE description and applie
 5. **CVE Mapping with LLM:**  The candidate techniques are passed to Gemini 2.5 Pro again to reason and select the most suitable MITRE ATT&CK techniques for each category based on the CVE context.
 6. **Display Results:**  The final mapped technique are presented to the user.
 
-
+### CVE-to-MITRE ATT&CK Mapping Use Case
 ![Mapping Methodology](./img/MappingMethodology.png)
 
 ---

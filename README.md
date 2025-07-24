@@ -62,13 +62,16 @@ This follows the methodology from the [Center for Threat-Informed Defense's Mapp
 ### Processing Steps
 
 When a user inputs a CVE ID, the system retrieves the CVE description and applies a large language model (LLM) to extract meaningful sentences that represent potential attack behaviors. Each extracted sentence is encoded using Sentence-BERT to generate semantic embeddings. In parallel, the MITRE ATT&CK technique descriptions are pre-encoded and stored in a FAISS index. The system then performs similarity search between the sentence embeddings and the ATT&CK embeddings, retrieving the top 10 most relevant techniques for each sentence category. This allows accurate mapping between CVE behavior and MITRE tactics.
-![System Architecture](./img/mapping.png)
+![Mapping Methodology](./img/mapping.png)
 1. **User Input:**  The user enters a CVE ID into the system.
 2. **Fetch CVE Description:**  The tool retrieves the official CVE description from the CVELIST GitHub repository.
 3. **Sentence Extraction with LLM:**  Gemini 2.5 Pro analyzes the description and extracts sentences categorized as Exploitation Technique, Primary Technique, and Secondary Technique.
 4. **Text Embedding & Similarity Search:**  Each extracted sentence is transformed into a vector representation using Sentence-BERT. At the same time, the entire MITRE ATT&CK technique database is also encoded into vector embeddings and indexed using FAISS for efficient similarity search. The system then compares the sentence embeddings against the technique embeddings to identify the top 10 most semantically relevant techniques for each category.
 5. **CVE Mapping with LLM:**  The candidate techniques are passed to Gemini 2.5 Pro again to reason and select the most suitable MITRE ATT&CK techniques for each category based on the CVE context.
 6. **Display Results:**  The final mapped technique are presented to the user.
+
+
+![Mapping Workflow](./img/mapping_workflow.png)
 
 ---
 

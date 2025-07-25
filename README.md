@@ -123,8 +123,7 @@ This tool allows you to search and retrieve download links for Windows ISO build
 
 After retrieving the Windows build links using the script, open the provided URL in your browser. You'll be directed to UUP dump where you can select the language and edition. Next, choose "Download and convert to ISO on your computer" and download the ZIP package. Extract it and run the script (uup_download_windows.cmd for Windows or the .sh script for Linux/macOS). The script will download the required files and generate a bootable ISO in the same folder, ready for use.
 
-
-
+![ISO Download Steps](./img/ISODownloadSteps.png)
 ### AI-LLM CVE Behavior Extraction & Analysis
 
 

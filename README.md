@@ -80,7 +80,7 @@ For example, given CVE-2021-34527 (PrintNightmare), the system extracts key beha
 
 ---
 ### Patch Search Tool Design (Overview)
-
+![Patch Relationshiip](./img/PatchRelationship.png)
 ### ISO Search Tool Design (Overview)
 
 ### AI-LLM CVE Behavior Extraction & Analysis

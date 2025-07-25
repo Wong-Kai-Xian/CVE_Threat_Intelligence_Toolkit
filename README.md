@@ -130,7 +130,14 @@ After retrieving the Windows build links using the script, open the provided URL
 ### AI-LLM CVE Behavior Extraction & Analysis
 AI-LLM CVE Behavior Extraction & Analysis is a system designed to analyze Process Monitor (Procmon) logs related to CVE exploits and extract meaningful behavioral patterns. By leveraging large language models (LLMs), the system identifies and explains malicious activities based on observed system operations. Users can upload Procmon logs generated during CVE simulations, and the tool will return structured insights such as file modifications, registry changes, process creation, and network behaviors associated with the exploit. Each behavior is mapped to its purpose within the attack chain, helping researchers and defenders understand how a vulnerability is exploited at the system level.
 
+### Use Case for AI-LLM CVE Behavior Extraction & Analysis
+
 ![LLM Use Case](./img/LLMUseCase.png)
+
+This use case demonstrates that the system is able to extract and explain accurate CVE-specific behaviors from raw Process Monitor logs. For example, in the analysis of CVE-2022-22718 (SpoolFool), it correctly identified key steps such as PowerShell creating the exploit binary, DLL payload injection, privilege escalation via the Print Spooler service, and the creation of an elevated user account. This showcases the system's effectiveness in mapping low-level system events to high-level attack behaviors, significantly easing the analysis process for security researchers and analysts.
+
+
+
 ---
 
 

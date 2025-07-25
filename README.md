@@ -39,7 +39,7 @@ The system consists of several key tools designed to simplify CVE analysis and s
 ## Project Design
 This section describes the design architecture and processing workflow behind each tool in the system. Each tool is built with a modular and API-driven approach, allowing them to function independently while sharing common components.
 
-### CVE Search Tool Design Overview
+### CVE Search Tool Overview
 The **CVE Search Tool** is a core component designed to provide comprehensive information about a CVE, including:
 
 - **Vulnerable OS Versions:**  Lists operating system versions that are vulnerable and can be used to reconstruct the CVE exploit environment.
@@ -112,7 +112,18 @@ The patch chain is developed, where each KB update is listed in sequence based o
 ![Patch Chain](./img/PatchChains.png)
 
 ---
-### ISO Search Tool Design
+### ISO Search Tool Overview
+This tool allows you to search and retrieve download links for Windows ISO builds from UUP dump using a version string (e.g., 10.0.22621.2283). It scrapes the results from UUP dump’s search page and returns a list of matching build descriptions along with direct URLs to their download pages.
+
+**Features**
+- Input a full Windows version (e.g., 10.0.22621.2283)
+- Automatically formats the version to match UUP dump search format
+- Scrapes and returns all matching builds
+- Outputs download descriptions and links
+
+After retrieving the Windows build links using the script, open the provided URL in your browser. You'll be directed to UUP dump where you can select the language and edition. Next, choose "Download and convert to ISO on your computer" and download the ZIP package. Extract it and run the script (uup_download_windows.cmd for Windows or the .sh script for Linux/macOS). The script will download the required files and generate a bootable ISO in the same folder, ready for use.
+
+
 
 ### AI-LLM CVE Behavior Extraction & Analysis
 

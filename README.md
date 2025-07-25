@@ -86,7 +86,6 @@ The Patch Search Tool allows users to input a specific Windows KB patch ID and r
 
 This allows analysts to determine which vulnerabilities are mitigated, and more importantly, which CVEs can still be simulated or reconstructed in a lab environment for testing, research, or exploit analysis.
 
----
 ### Patch Search Tool Design
 This tool is built using publicly available data from the Microsoft Security Response Center (MSRC). It parses the MSRC patch data and constructs relationships between:
 - CVE IDs and KB patches (to identify what vulnerabilities a patch resolves).

@@ -1,0 +1,600 @@
+<head>
+  <meta charset="UTF-8" />
+  <title>CVE & Patch Search</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    /* Tab buttons container */
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .tab-buttons button {
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Sections */
+    section {
+      /* space for content */
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button.search-btn {
+      margin-top: 25px;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    button.search-btn:hover {
+      background-color: #0056b3;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #333;
+      text-align: center;
+    }
+
+    h3 {
+      margin-top: 30px;
+      color: #222;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    pre {
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: auto;
+      min-height: 100px;
+    }
+ 
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #888;
+      font-size: 13px;
+    }
+
+    .tab-buttons button.active {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .tab-buttons button.inactive {
+      background-color: #ccc;
+      color: #333;
+    }
+
+    /* Styles for the new Behavior Extractor results */
+    .behavior-box {
+      border: 1px solid #007bff;
+      background: #e9f0ff;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .behavior-box h3 {
+        margin-top: 0;
+        border-bottom: none;
+    }
+    .behavior-box ul { margin-top: 0; padding-left: 20px; }
+    .behavior-box li { margin-bottom: 5px; word-break: break-all; }
+
+  </style>
+</head>
+
+
+<body>
+  <div class="container">
+
+    <!-- Tab buttons -->
+    <div class="tab-buttons">
+      <button id="btnCve" class="active" onclick="showTool('cve')">CVE Search Tool</button>
+      <button id="btnPatch" class="inactive" onclick="showTool('patch')">Patch Search Tool</button>
+      <button id="btnIso" class="inactive" onclick="showTool('iso')">ISO Search Tool</button>
+      <button id="btnBehavior" class="inactive" onclick="showTool('behavior')">CVE Behavior Extractor</button>
+    </div>
+
+
+    <!-- CVE Search Section -->
+    <section id="cveTool" style="display: block;">
+      <h2>CVE Search Tool</h2>
+
+      <label for="cveInput">CVE ID:</label>
+      <input type="text" id="cveInput" placeholder="e.g. CVE-2022-22718" />
+
+      <label for="osSelect">Select OS Version:</label>
+      <select id="osSelect">
+        <option value="">All</option>
+        <option>Windows 10 Version 1607 for x64-based Systems</option>
+        <option>Windows 10 Version 1607 for 32-bit Systems</option>
+        <option>Windows 10 for x64-based Systems</option>
+        <option>Windows 10 for 32-bit Systems</option>
+        <option>Windows 10 Version 21H2 for x64-based Systems</option>
+        <option>Windows 10 Version 21H2 for ARM64-based Systems</option>
+        <option>Windows 10 Version 21H2 for 32-bit Systems</option>
+        <option>Windows 11 version 21H2 for ARM64-based Systems</option>
+        <option>Windows 11 version 21H2 for x64-based Systems</option>
+        <option>Windows 10 Version 20H2 for ARM64-based Systems</option>
+        <option>Windows 10 Version 20H2 for 32-bit Systems</option>
+        <option>Windows 10 Version 2004 for x64-based Systems</option>
+        <option>Windows 10 Version 2004 for ARM64-based Systems</option>
+        <option>Windows 10 Version 2004 for 32-bit Systems</option>
+        <option>Windows 10 Version 21H1 for 32-bit Systems</option>
+        <option>Windows 10 Version 21H1 for ARM64-based Systems</option>
+        <option>Windows 10 Version 21H1 for x64-based Systems</option>
+        <option>Windows 10 Version 1909 for ARM64-based Systems</option>
+        <option>Windows 10 Version 1909 for x64-based Systems</option>
+        <option>Windows 10 Version 1909 for 32-bit Systems</option>
+        <option>Windows 10 Version 1809 for ARM64-based Systems</option>
+        <option>Windows 10 Version 1809 for x64-based Systems</option>
+        <option>Windows 10 Version 1809 for 32-bit Systems</option>
+        <option>Windows 10 Version 20H2 for x64-based Systems</option>
+        <option>Windows 10 Version 22H2 for 32-bit Systems</option>
+        <option>Windows 10 Version 22H2 for ARM64-based Systems</option>
+        <option>Windows 10 Version 22H2 for x64-based Systems</option>
+        <option>Windows 11 Version 22H2 for x64-based Systems</option>
+        <option>Windows 11 Version 22H2 for ARM64-based Systems</option>
+        <option>Windows 10 Version 1803 for ARM64-based Systems</option>
+        <option>Windows 10 Version 1803 for x64-based Systems</option>
+        <option>Windows 10 Version 1803 for 32-bit Systems</option>
+        <option>Windows 10 Version 1903 for ARM64-based Systems</option>
+        <option>Windows 10 Version 1903 for x64-based Systems</option>
+        <option>Windows 10 Version 1903 for 32-bit Systems</option>
+        <option>Windows 11 Version 24H2 for x64-based Systems</option>
+        <option>Windows 11 Version 24H2 for ARM64-based Systems</option>
+        <option>Windows 11 Version 23H2 for x64-based Systems</option>
+        <option>Windows 11 Version 23H2 for ARM64-based Systems</option>
+      </select>
+
+      <button onclick="searchCVE()" class="search-btn">Search CVE</button>
+
+      <h3>Analysis Result:</h3>
+      <pre id="analysisOutput">Waiting for input...</pre>
+
+      <h3>Additional Info:</h3>
+      <div id="metaInfo"></div>
+    </section>
+
+    <!-- Patch Search Section -->
+    <section id="patchTool" style="display: none;">
+      <h2>Patch Search Tool</h2>
+
+      <label for="patchInput">Patch ID or Keyword:</label>
+      <input type="text" id="patchInput" placeholder="e.g. KB5003637 or 22000.1574" />
+
+      <button onclick="searchPatch()" class="search-btn">Search Patch</button>
+
+      <h3>Patch Search Result:</h3>
+      <pre id="patchOutput">Waiting for input...</pre>
+    </section>
+
+    <!-- ISO Search Section -->
+    <section id="isoTool" style="display: none;">
+      <h2>ISO Search Tool</h2>
+
+      <label for="isoVersion">Windows Build Version:</label>
+      <input type="text" id="isoVersion" placeholder="e.g. 22000.1574" />
+
+      <button onclick="searchISO()" class="search-btn">Search ISO</button>
+
+      <h3>Download Links:</h3>
+      <ul id="isoLinks" style="padding-left: 20px;"></ul>
+    </section>
+
+    <section id="behaviorTool" style="display: none;">
+        <h2>CVE Behavior Extractor</h2>
+        <form id="behaviorForm">
+            <label for="csvfile">Upload Process Monitor CSV:</label>
+            <input type="file" name="csvfile" id="csvfile" accept=".csv" required />
+            <label for="cveid_behavior">Enter CVE ID (optional):</label>
+            <input type="text" name="cveid" id="cveid_behavior" placeholder="CVE-YYYY-NNNNN" />
+            <button type="submit" class="search-btn">Analyze</button>
+        </form>
+        <div id="behaviorResults">
+            </div>
+    </section>
+
+    <div class="footer">
+      Powered by your backend API via Flask + ngrok
+    </div>
+  </div>
+
+  <script>
+    // Switch between tools and update tab button styles
+    const idMap = {
+      cve: 'btnCve',
+      patch: 'btnPatch',
+      iso: 'btnIso',
+      behavior: 'btnBehavior'
+    };
+
+    function showTool(tool) {
+      const tools = ['cve', 'patch', 'iso', 'behavior'];
+      tools.forEach(t => {
+        document.getElementById(t + 'Tool').style.display = (tool === t) ? 'block' : 'none';
+
+        const btnId = idMap[t];   // get correct ID from map
+        const btn = document.getElementById(btnId);
+        if (btn) {
+          btn.classList.toggle('active', tool === t);
+          btn.classList.toggle('inactive', tool !== t);
+        }
+      });
+    }
+
+    function linkify(text) {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, url => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+    }
+
+    async function searchCVE() {
+      const cve_search = document.getElementById('cveInput').value.trim();
+      const os_keyword = document.getElementById('osSelect').value.trim();
+      const apiUrl = "{{ api_url }}";
+      const analysisOutput = document.getElementById('analysisOutput');
+      const metaInfo = document.getElementById('metaInfo');
+
+      if (!cve_search) {
+        alert('Please enter a CVE ID');
+        return;
+      }
+
+      analysisOutput.textContent = "Searching...";
+      metaInfo.innerHTML = "";
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cve_search, os_keyword })
+        });
+
+        if (!response.ok) {
+          analysisOutput.textContent = `Server error: ${response.status} ${response.statusText}`;
+          return;
+        }
+
+        const data = await response.json();
+
+        analysisOutput.textContent = data.analysis || "No analysis returned.";
+
+	function linkify(text) {
+	  const urlRegex = /(https?:\/\/[^\s]+)/g;
+	  return text.replace(urlRegex, url => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+	}
+
+        let html = "<ul>";
+        for (const [key, value] of Object.entries(data)) {
+          if (key === "analysis") continue;
+          if (Array.isArray(value)) {
+            html += `<li><strong>${key}:</strong><ul>`;
+            for (const item of value) {
+              html += `<li>${linkify(item)}</li>`;
+            }
+            html += "</ul></li>";
+          } else {
+            html += `<li><strong>${key}:</strong> ${linkify(value)}</li>`;
+          }
+        }
+        html += "</ul>";
+        metaInfo.innerHTML = html;
+      } catch (error) {
+        analysisOutput.textContent = 'Fetch error: ' + error.message;
+      }
+    }
+
+    async function searchPatch() {
+      const patch_search = document.getElementById('patchInput').value.trim();
+      const patchOutput = document.getElementById('patchOutput');
+
+      if (!patch_search) {
+        alert('Please enter a Patch ID or Keyword');
+        return;
+      }
+
+      patchOutput.textContent = "Searching...";
+
+      try {
+        const patchApiUrl = "{{ patch_api_url }}";  // Your backend patch API URL
+
+        const response = await fetch(patchApiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ patch_search })
+        });
+
+        if (!response.ok) {
+          patchOutput.textContent = `Server error: ${response.status} ${response.statusText}`;
+          return;
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+          patchOutput.textContent = `Error: ${data.error}`;
+          return;
+        }
+
+        const resolved = data.resolved_cves_summary;
+        const remaining = data.remaining_cves_summary;
+        const mitre = data.mitre_attack_summary;
+
+        let resultText = `Patch: ${data.input_key}\n\n`;
+
+	patchOutput.innerHTML = ''; // Clear previous
+	
+	createCVESection("CVEs Resolved", resolved.examples);
+	createCVESection("Remaining Vulnerabilities", remaining.examples);
+	displayMitreMappings(mitre);
+
+	// Utility: create collapsible CVE section
+	function createCVESection(title, cves) {
+	  const wrapper = document.createElement('div');
+	  const titleEl = document.createElement('strong');
+	  titleEl.textContent = `${title} (${cves.length})`;
+	  wrapper.appendChild(titleEl);
+
+	  const content = document.createElement('span');
+	  content.style.display = 'inline'; // comma separated inline
+
+	  const renderList = (showAll) => {
+	    content.innerHTML = ''; // clear
+
+	    let itemsToShow = showAll ? cves : cves.slice(0, 5);
+
+	    itemsToShow.forEach((cve, idx) => {
+	      content.appendChild(document.createTextNode(cve));
+
+	      if (idx < itemsToShow.length - 1) {
+	        content.appendChild(document.createTextNode(', '));
+	      }
+	    });
+
+	    if (!showAll && cves.length > 5) {
+	      content.appendChild(document.createTextNode(', ...'));
+	    }
+	  };
+
+	  let isExpanded = false;
+	  renderList(isExpanded);
+
+	  wrapper.appendChild(document.createElement('br'));
+	  wrapper.appendChild(content);
+
+	  if (cves.length > 5) {
+	    const btn = document.createElement('button');
+	    btn.textContent = 'Show More';
+	    btn.style.marginLeft = '10px';
+	    btn.style.cursor = 'pointer';
+
+	    btn.onclick = () => {
+	      isExpanded = !isExpanded;
+	      renderList(isExpanded);
+	      btn.textContent = isExpanded ? 'Show Less' : 'Show More';
+	    };
+
+	    wrapper.appendChild(btn);
+	  }
+
+	  patchOutput.appendChild(wrapper);
+	  patchOutput.appendChild(document.createElement('hr'));
+	}
+
+	function displayMitreMappings(mitre) {
+	  const container = document.createElement('div');
+	  container.style.marginTop = '15px';
+
+	  const title = document.createElement('strong');
+	  title.textContent = 'MITRE ATT&CK Mappings:';
+	  container.appendChild(title);
+
+	  if (Object.keys(mitre).length === 0) {
+	    const noneText = document.createTextNode(' None');
+	    container.appendChild(noneText);
+	  } else {
+	    Object.entries(mitre).forEach(([cve, techniques]) => {
+	      const cveDiv = document.createElement('div');
+	      cveDiv.style.marginTop = '10px';
+	      cveDiv.style.padding = '8px';
+	      cveDiv.style.border = '1px solid #ddd';
+	      cveDiv.style.borderRadius = '6px';
+	      cveDiv.style.backgroundColor = '#fafafa';
+
+	      const cveTitle = document.createElement('div');
+	      cveTitle.textContent = cve;
+	      cveTitle.style.fontWeight = '600';
+	      cveTitle.style.marginBottom = '6px';
+	      cveDiv.appendChild(cveTitle);
+
+	      const ul = document.createElement('ul');
+	      ul.style.marginTop = '0';
+	      ul.style.paddingLeft = '20px';
+
+	      techniques.forEach((tech) => {
+	        const li = document.createElement('li');
+	        if (typeof tech === 'string') {
+	          li.textContent = tech;
+	        } else {
+	          li.textContent = `${tech.type} | ${tech.id} | ${tech.name}`;
+	        }
+	        ul.appendChild(li);
+	      });
+
+	      cveDiv.appendChild(ul);
+	      container.appendChild(cveDiv);
+	    });
+	  }
+
+	  patchOutput.appendChild(container);
+	}
+
+      } catch (error) {
+        patchOutput.textContent = 'Fetch error: ' + error.message;
+      }
+    }
+
+    async function searchISO() {
+      const version = document.getElementById('isoVersion').value.trim();
+      const isoLinks = document.getElementById('isoLinks');
+      isoLinks.innerHTML = "";
+
+      if (!version) {
+        alert('Please enter a Windows build version.');
+        return;
+      }
+
+      isoLinks.innerHTML = "<li>Searching...</li>";
+
+      try {
+        const isoApiUrl = "{{ uupdump_api_url }}";
+
+        const response = await fetch(isoApiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ version })
+        });
+
+        const data = await response.json();
+        isoLinks.innerHTML = ""; // Clear
+
+        if (data.error) {
+          isoLinks.innerHTML = `<li>Error: ${data.error}</li>`;
+        } else if (data.links && data.links.length) {
+	  data.links.forEach(link => {
+	    const li = document.createElement('li');
+	    li.innerHTML = `${link.description} : <a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.url}</a>`;
+	    isoLinks.appendChild(li);
+  	});
+
+        } else {
+          isoLinks.innerHTML = "<li>No links found.</li>";
+        }
+      } catch (error) {
+        isoLinks.innerHTML = `<li>Fetch error: ${error.message}</li>`;
+      }
+    }
+
+    // --- New Behavior Extractor Logic ---
+    document.getElementById('behaviorForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent default form submission
+        analyzeBehavior();
+    });
+
+    async function analyzeBehavior() {
+        const form = document.getElementById('behaviorForm');
+        const formData = new FormData(form);
+        const resultsDiv = document.getElementById('behaviorResults');
+        const apiUrl = "{{ analyze_cve_csv_api_url }}"; // Your new backend endpoint
+
+        if (!formData.get('csvfile').name) {
+            alert('Please select a CSV file to upload.');
+            return;
+        }
+
+        resultsDiv.innerHTML = "<p>Analyzing, please wait...</p>";
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                body: formData // No 'Content-Type' header needed, browser sets it for FormData
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                resultsDiv.innerHTML = `<p style="color: red;">Server error: ${response.status} - ${errorText}</p>`;
+                return;
+            }
+
+            const data = await response.json();
+            resultsDiv.innerHTML = ''; // Clear loading message
+
+            if (data.error) {
+                 resultsDiv.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+            } else if (data.behaviors && data.behaviors.length > 0) {
+                let html = `<h2>Analysis Results for ${data.cve_id || 'Uploaded File'}</h2><p><strong>File:</strong> ${data.filename}</p>`;
+                
+                data.behaviors.forEach((b, index) => {
+                    html += `
+                    <div class="behavior-box">
+                        <h3>Behavior #${index + 1}: ${b.name}</h3>
+                        <p><strong>Explanation:</strong> ${b.explanation}</p>
+                        <p><strong>Matched Events Count:</strong> ${b.matched_count}</p>`;
+                    
+                    if (b.matched_paths && b.matched_paths.length > 0) {
+                        html += `<p><strong>Matched Paths:</strong></p><ul>`;
+                        b.matched_paths.forEach(p => {
+                            html += `<li><code>${p}</code></li>`;
+                        });
+                        html += `</ul>`;
+                    } else {
+                        html += `<p>No matched paths.</p>`;
+                    }
+                    html += `</div>`;
+                });
+                resultsDiv.innerHTML = html;
+            } else {
+                resultsDiv.innerHTML = `<p>No malicious behaviors detected based on the defined rules.</p>`;
+            }
+
+        } catch (error) {
+            resultsDiv.innerHTML = `<p style="color: red;">Fetch error: ${error.message}</p>`;
+        }
+    }
+  </script>
+</body>

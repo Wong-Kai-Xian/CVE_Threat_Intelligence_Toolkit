@@ -17,6 +17,13 @@ By combining these features, CVE Threat Intelligence Toolkit empowers analysts t
 The diagram below illustrates the overall workflow of the system, including the ngrok web UI.
 
 ![System Overview](./img/SystemOverview.png)
+
+**Try the System on Google Colab**
+We provide a Google Colab notebook for easy, interactive use without local setup.
+
+[Open the Colab Notebook here](https://colab.research.google.com/drive/1vInaY-z0rhn--4Hc5Dn-72MA4Oj15moC?usp=sharing)
+
+
 ---
 
 ## Introduction

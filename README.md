@@ -79,6 +79,11 @@ For example, given CVE-2021-34527 (PrintNightmare), the system extracts key beha
 ![Mapping Methodology](./img/MappingMethodology.png)
 
 ---
+### Patch Search Tool Design (Overview)
+
+### ISO Search Tool Design (Overview)
+
+### AI-LLM CVE Behavior Extraction & Analysis
 
 
 

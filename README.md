@@ -73,6 +73,9 @@ When a user inputs a CVE ID, the system retrieves the CVE description and applie
 6. **Display Results:**  The final mapped technique are presented to the user.
 
 ### CVE-to-MITRE ATT&CK Mapping Use Case
+This use case shows how CVEs are analyzed and matched to MITRE ATT&CK techniques using AI and semantic search
+For example, given CVE-2021-34527 (PrintNightmare), the system extracts key behaviors from the CVE description and maps them to relevant MITRE ATT&CK techniques such as **T1547.012: Print Processors (Exploitation Technique)**, **T1068: Exploitation for Privilege Escalation (Primary Impact)**, **T1136: Create Account (Secondary Impact)** using sentence embeddings and LLM-based reasoning. 
+
 ![Mapping Methodology](./img/MappingMethodology.png)
 
 ---

@@ -79,11 +79,24 @@ For example, given CVE-2021-34527 (PrintNightmare), the system extracts key beha
 ![Mapping Methodology](./img/MappingMethodology.png)
 
 ---
-### Patch Search Tool Design (Overview)
+### Patch Search Tool (Overview)
 The Patch Search Tool allows users to input a specific Windows KB patch ID and retrieve detailed vulnerability information. It displays:
 - A list of CVEs that are resolved by the given patch.
 - A list of CVEs that remain unpatched, meaning they are still exploitable if this is the most recent patch installed.
+
 This allows analysts to determine which vulnerabilities are mitigated, and more importantly, which CVEs can still be simulated or reconstructed in a lab environment for testing, research, or exploit analysis.
+---
+### Patch Search Tool Design
+This tool is built using publicly available data from the Microsoft Security Response Center (MSRC). It parses the MSRC patch data and constructs relationships between:
+- CVE IDs and KB patches (to identify what vulnerabilities a patch resolves).
+- KB patches and Windows OS families/versions (e.g., Windows 10 1607 vs. 22H2).
+- KB supercedence chains (to identify which patches replace others over time).
+The system maps each KB to its respective OS version, ensuring that CVE coverage is analyzed in the correct platform context.
+
+### Patch & OS Relationship
+- A single CVE may be resolved by multiple KB patches, depending on the Windows OS family or version. For example, Windows 10 1607 and Windows 10 22H2 may receive different KB numbers to fix the same CVE.
+- Patch supercedence refers to the process where newer KB patches replace older ones. The tool builds and visualizes a supercedence chain, helping analysts see the latest applicable patch for a system, and how updates evolve over time.
+
 ![Patch Relationshiip](./img/PatchRelationship.png)
 
 ---

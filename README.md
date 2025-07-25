@@ -27,6 +27,25 @@ We provide a Google Colab notebook for easy, interactive use without local setup
 
 ---
 
+## Table of Contents
+
+- [Purpose](#purpose)
+- [System Overview](#system-overview)
+- [Try the System on Google Colab](#try-the-system-on-google-colab)
+- [Introduction](#introduction)
+- [Project Design](#project-design)
+  - [CVE Search Tool Overview](#cve-search-tool-overview)
+  - [CVE-to-MITRE ATT&CK Mapping Methodology](#cve-to-mitre-attck-mapping-methodology)
+  - [CVE-to-MITRE ATT&CK Mapping Workflow](#cve-to-mitre-attck-mapping-workflow)
+  - [CVE-to-MITRE ATT&CK Mapping Use Case](#cve-to-mitre-attck-mapping-use-case)
+  - [Patch Search Tool Overview](#patch-search-tool-overview)
+  - [Patch Search Tool Design](#patch-search-tool-design)
+  - [Patch & OS Relationship](#patch--os-relationship)
+  - [ISO Search Tool Overview](#iso-search-tool-overview)
+  - [AI-LLM CVE Behavior Extraction & Analysis](#ai-llm-cve-behavior-extraction--analysis)
+  - [Use Case for AI-LLM CVE Behavior Extraction & Analysis](#use-case-for-ai-llm-cve-behavior-extraction--analysis)
+
+
 ## Introduction
 
 In today’s rapidly evolving cybersecurity landscape, timely and precise understanding of software vulnerabilities is critical for effective defense. **CVE Threat Intelligence Toolkit** is a tool designed to empower security analysts by consolidating all essential information related to a specific CVE (Common Vulnerabilities and Exposures) in one place. It enables analysts to reconstruct the vulnerability, explore its exploit mechanisms, and simulate attacks in realistic environments.
@@ -41,6 +60,7 @@ The system consists of several key tools designed to simplify CVE analysis and s
 - **Patch Search Tool:** Identifies which CVEs are fixed or still vulnerable for a given patch (e.g., Windows KB number).
 - **ISO Search Tool:** Helps download and manage OS or VM ISO images to set up test environments matching CVE prerequisites.
 - **CVE Behavior Extractor:** Uses LLMs to analyze Procmon logs and automatically extract key exploit behaviors related to specific CVEs.
+
 
 ---
 
@@ -86,7 +106,9 @@ For example, given CVE-2021-34527 (PrintNightmare), the system extracts key beha
 
 ![Mapping Methodology](./img/MappingMethodology.png)
 
+
 ---
+
 ### Patch Search Tool Overview
 The Patch Search Tool allows users to input a specific Windows KB patch ID and retrieve detailed vulnerability information. It displays:
 - A list of CVEs that are resolved by the given patch.
@@ -119,7 +141,9 @@ The patch chain is developed, where each KB update is listed in sequence based o
 
 ![Patch Chain](./img/PatchChains.png)
 
+
 ---
+
 ### ISO Search Tool Overview
 This tool allows you to search and retrieve download links for Windows ISO builds from UUP dump using a version string (e.g., 10.0.22621.2283). It scrapes the results from UUP dump’s search page and returns a list of matching build descriptions along with direct URLs to their download pages.
 
@@ -134,7 +158,9 @@ After retrieving the Windows build links using the script, open the provided URL
 ![ISO Download Steps](./img/ISODownloadSteps.png)
 ![ISO Download Steps 2](./img/ISODownloadSteps2.png)
 
+
 ---
+
 ### AI-LLM CVE Behavior Extraction & Analysis
 AI-LLM CVE Behavior Extraction & Analysis is a system designed to analyze Process Monitor (Procmon) logs related to CVE exploits and extract meaningful behavioral patterns. By leveraging large language models (LLMs), the system identifies and explains malicious activities based on observed system operations. Users can upload Procmon logs generated during CVE simulations, and the tool will return structured insights such as file modifications, registry changes, process creation, and network behaviors associated with the exploit. Each behavior is mapped to its purpose within the attack chain, helping researchers and defenders understand how a vulnerability is exploited at the system level.
 
@@ -143,7 +169,6 @@ AI-LLM CVE Behavior Extraction & Analysis is a system designed to analyze Proces
 ![LLM Use Case](./img/LLMUseCase.png)
 
 This use case demonstrates that the system is able to extract and explain accurate CVE-specific behaviors from raw Process Monitor logs. For example, in the analysis of CVE-2022-22718 (SpoolFool), it correctly identified key steps such as PowerShell creating the exploit binary, DLL payload injection, privilege escalation via the Print Spooler service, and the creation of an elevated user account. This showcases the system's effectiveness in mapping low-level system events to high-level attack behaviors, significantly easing the analysis process for security researchers and analysts.
-
 
 
 ---

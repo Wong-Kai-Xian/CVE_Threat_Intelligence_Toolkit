@@ -107,7 +107,7 @@ The tool builds and visualizes a supercedence chain, helping analysts see the la
 
 ![Patch Relationshiip](./img/PatchRelationship.png)
 
-The patch chain is developed in the Colab, where each KB update is listed in sequence based on Microsoft’s supersedence data. The Colab output includes key metadata such as the KB number, Windows build version, supported OS platforms (e.g., Windows 10 1607, Windows 11 22H2), and the list of CVEs resolved by each patch.
+The patch chain is developed, where each KB update is listed in sequence based on Microsoft’s supersedence data. The Colab output includes key metadata such as the KB number, Windows build version, supported OS platforms (e.g., Windows 10 1607, Windows 11 22H2), and the list of CVEs resolved by each patch.
 
 ![Patch Chain](./img/PatchChains.png)
 

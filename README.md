@@ -80,7 +80,13 @@ For example, given CVE-2021-34527 (PrintNightmare), the system extracts key beha
 
 ---
 ### Patch Search Tool Design (Overview)
+The Patch Search Tool allows users to input a specific Windows KB patch ID and retrieve detailed vulnerability information. It displays:
+- A list of CVEs that are resolved by the given patch.
+- A list of CVEs that remain unpatched, meaning they are still exploitable if this is the most recent patch installed.
+This allows analysts to determine which vulnerabilities are mitigated, and more importantly, which CVEs can still be simulated or reconstructed in a lab environment for testing, research, or exploit analysis.
 ![Patch Relationshiip](./img/PatchRelationship.png)
+
+---
 ### ISO Search Tool Design (Overview)
 
 ### AI-LLM CVE Behavior Extraction & Analysis

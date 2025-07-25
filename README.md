@@ -39,7 +39,7 @@ The system consists of several key tools designed to simplify CVE analysis and s
 ## Project Design
 This section describes the design architecture and processing workflow behind each tool in the system. Each tool is built with a modular and API-driven approach, allowing them to function independently while sharing common components.
 
-### CVE Search Tool Design (Overview)
+### CVE Search Tool Design
 The **CVE Search Tool** is a core component designed to provide comprehensive information about a CVE, including:
 
 - **Vulnerable OS Versions:**  Lists operating system versions that are vulnerable and can be used to reconstruct the CVE exploit environment.
@@ -49,7 +49,7 @@ The **CVE Search Tool** is a core component designed to provide comprehensive in
 - **Proof-of-Concept (PoC) GitHub URLs:**  Links to public repositories containing exploit or demonstration code.
 - **Reference URLs:**  Additional external links for deeper research and context.
 
-### CVE-to-MITRE ATT&CK Mapping Methodology
+#### CVE-to-MITRE ATT&CK Mapping Methodology
 
 The CVE description is categorized into three technique types:
 
@@ -59,7 +59,7 @@ The CVE description is categorized into three technique types:
 
 This follows the methodology from the [Center for Threat-Informed Defense's Mappings Explorer](https://center-for-threat-informed-defense.github.io/mappings-explorer/about/methodology/cve-methodology/).
 
-### CVE-to-MITRE ATT&CK Mapping Workflow
+#### CVE-to-MITRE ATT&CK Mapping Workflow
 
 When a user inputs a CVE ID, the system retrieves the CVE description and applies a large language model (LLM) to extract meaningful sentences that represent potential attack behaviors. Each extracted sentence is encoded using Sentence-BERT to generate semantic embeddings. In parallel, the MITRE ATT&CK technique descriptions are pre-encoded and stored in a FAISS index. The system then performs similarity search between the sentence embeddings and the ATT&CK embeddings, retrieving the top 10 most relevant techniques for each sentence category. This allows accurate mapping between CVE behavior and MITRE tactics.
 
@@ -72,14 +72,14 @@ When a user inputs a CVE ID, the system retrieves the CVE description and applie
 5. **CVE Mapping with LLM:**  The candidate techniques are passed to Gemini 2.5 Pro again to reason and select the most suitable MITRE ATT&CK techniques for each category based on the CVE context.
 6. **Display Results:**  The final mapped technique are presented to the user.
 
-### CVE-to-MITRE ATT&CK Mapping Use Case
+#### CVE-to-MITRE ATT&CK Mapping Use Case
 This use case shows how CVEs are analyzed and matched to MITRE ATT&CK techniques using AI and semantic search
 For example, given CVE-2021-34527 (PrintNightmare), the system extracts key behaviors from the CVE description and maps them to relevant MITRE ATT&CK techniques such as **T1547.012: Print Processors (Exploitation Technique)**, **T1068: Exploitation for Privilege Escalation (Primary Impact)**, **T1136: Create Account (Secondary Impact)** using sentence embeddings and LLM-based reasoning. 
 
 ![Mapping Methodology](./img/MappingMethodology.png)
 
 ---
-### Patch Search Tool (Overview)
+### Patch Search Tool
 The Patch Search Tool allows users to input a specific Windows KB patch ID and retrieve detailed vulnerability information. It displays:
 - A list of CVEs that are resolved by the given patch.
 - A list of CVEs that remain unpatched, meaning they are still exploitable if this is the most recent patch installed.
@@ -87,21 +87,21 @@ The Patch Search Tool allows users to input a specific Windows KB patch ID and r
 This allows analysts to determine which vulnerabilities are mitigated, and more importantly, which CVEs can still be simulated or reconstructed in a lab environment for testing, research, or exploit analysis.
 
 ---
-### Patch Search Tool Design
+#### Patch Search Tool Design
 This tool is built using publicly available data from the Microsoft Security Response Center (MSRC). It parses the MSRC patch data and constructs relationships between:
 - CVE IDs and KB patches (to identify what vulnerabilities a patch resolves).
 - KB patches and Windows OS families/versions (e.g., Windows 10 1607 vs. 22H2).
 - KB supercedence chains (to identify which patches replace others over time).
 The system maps each KB to its respective OS version, ensuring that CVE coverage is analyzed in the correct platform context.
 
-### Patch & OS Relationship
+#### Patch & OS Relationship
 - A single CVE may be resolved by multiple KB patches, depending on the Windows OS family or version. For example, Windows 10 1607 and Windows 10 22H2 may receive different KB numbers to fix the same CVE.
 - Patch supercedence refers to the process where newer KB patches replace older ones. The tool builds and visualizes a supercedence chain, helping analysts see the latest applicable patch for a system, and how updates evolve over time.
 
 ![Patch Relationshiip](./img/PatchRelationship.png)
 
 ---
-### ISO Search Tool Design (Overview)
+### ISO Search Tool Design
 
 ### AI-LLM CVE Behavior Extraction & Analysis
 

@@ -18,7 +18,7 @@ The diagram below illustrates the overall workflow of the system, including the 
 
 ![System Overview](./img/SystemOverview.png)
 
-###Try the System on Google Colab
+### Try the System on Google Colab
 
 We provide a Google Colab notebook for easy, interactive use without local setup.
 

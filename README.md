@@ -94,8 +94,16 @@ This tool is built using publicly available data from the Microsoft Security Res
 The system maps each KB to its respective OS version, ensuring that CVE coverage is analyzed in the correct platform context.
 
 ### Patch & OS Relationship
-- A single CVE may be resolved by multiple KB patches, depending on the Windows OS family or version. For example, Windows 10 1607 and Windows 10 22H2 may receive different KB numbers to fix the same CVE.
-- Patch supercedence refers to the process where newer KB patches replace older ones. The tool builds and visualizes a supercedence chain, helping analysts see the latest applicable patch for a system, and how updates evolve over time.
+
+Patches are closely tied to both the vulnerabilities (CVEs) they address and the OS versions they are released for. The relationships are structured as follows:
+
+- Each patch node connects to one or more CVEs that it resolves in a specific release cycle (typically monthly).
+- Each patch is associated with an OS group, representing the target Windows version or edition (e.g., Windows 10 1607, 21H2, or Server 2016).
+- A single CVE may be linked to multiple patches because different OS versions require different updates to fix the same vulnerability.
+- A single patch may address multiple CVEs when a cumulative update fixes several security issues at once.
+- Patch supercedence refers to the process where newer KB patches replace older ones.
+
+The tool builds and visualizes a supercedence chain, helping analysts see the latest applicable patch for a system, and how updates evolve over time.
 
 ![Patch Relationshiip](./img/PatchRelationship.png)
 

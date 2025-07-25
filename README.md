@@ -124,14 +124,14 @@ This tool allows you to search and retrieve download links for Windows ISO build
 After retrieving the Windows build links using the script, open the provided URL in your browser. You'll be directed to UUP dump where you can select the language and edition. Next, choose "Download and convert to ISO on your computer" and download the ZIP package. Extract it and run the script (uup_download_windows.cmd for Windows or the .sh script for Linux/macOS). The script will download the required files and generate a bootable ISO in the same folder, ready for use.
 
 ![ISO Download Steps](./img/ISODownloadSteps.png)
-![ISO Download Steps](./img/ISODownloadSteps2.png)
+![ISO Download Steps 2](./img/ISODownloadSteps2.png)
 
 ---
 ### AI-LLM CVE Behavior Extraction & Analysis
 AI-LLM CVE Behavior Extraction & Analysis is a system designed to analyze Process Monitor (Procmon) logs related to CVE exploits and extract meaningful behavioral patterns. By leveraging large language models (LLMs), the system identifies and explains malicious activities based on observed system operations. Users can upload Procmon logs generated during CVE simulations, and the tool will return structured insights such as file modifications, registry changes, process creation, and network behaviors associated with the exploit. Each behavior is mapped to its purpose within the attack chain, helping researchers and defenders understand how a vulnerability is exploited at the system level.
 
 ![LLM Use Case](./img/LLMUseCase.png)
-
+![LLM Use Case 2](./img/LLMUseCase2.png)
 ---
 
 

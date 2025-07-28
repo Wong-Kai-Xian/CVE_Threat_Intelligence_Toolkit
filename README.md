@@ -21,7 +21,9 @@ The diagram below illustrates the overall workflow of the system, including the 
 ## Try the System on Google Colab
 
 We provide a Google Colab notebook for easy, interactive use without local setup.
-
+Before you begin, please make sure you have the following:
+- Your Gemini 2.5 Pro API key (from Google AI Studio)
+- Your Ngrok Authtoken (from Ngrok Dashboard)
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1vInaY-z0rhn--4Hc5Dn-72MA4Oj15moC?usp=sharing)
 
 

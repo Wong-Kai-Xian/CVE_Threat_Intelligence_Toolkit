@@ -175,8 +175,31 @@ AI-LLM CVE Behavior Extraction & Analysis is a system designed to analyze Proces
 
 This use case demonstrates that the system is able to extract and explain accurate CVE-specific behaviors from raw Process Monitor logs. For example, in the analysis of CVE-2022-22718 (SpoolFool), it correctly identified key steps such as PowerShell creating the exploit binary, DLL payload injection, privilege escalation via the Print Spooler service, and the creation of an elevated user account. This showcases the system's effectiveness in mapping low-level system events to high-level attack behaviors, significantly easing the analysis process for security researchers and analysts.
 
-
 ---
+
+### AI-Powered Automated CVE Simulation (Future Integration)
+To further extend the capabilities of the CVE Threat Intelligence Toolkit, we are developing an AI-powered automation module that can automatically build vulnerable virtual environments and simulate CVE exploits. This feature leverages VMware, Cline AI (VS Code Extension), MCP (Model Context Protocol), and Gemini 2.5 Pro to transform CVE analysis from a manual process into a fully automated workflow.
+
+**Features**
+- **Automated VMware Environment Deployment:** Given a CVE ID, the system automatically identifies the required Windows build version from the CVE database, retrieves the matching ISO using the ISO Search Tool, and provisions a VMware virtual machine pre-configured for the exploit scenario.
+- **Auto PoC Integration & Execution:** Using the PoC links stored in the database, the AI assistant can download the proof-of-concept exploit, configure dependencies, and execute the attack inside the virtual machine.
+
+- **AI Assistant (Cline in VS Code):** Cline acts as a local AI orchestrator in VS Code, integrating MCP tools and Gemini 2.5 Pro to automate multi-step tasks such as:
+  - Downloading ISO and creating VMware VMs.
+  - Installing patches or keeping the environment unpatched for exploitation.
+  - Running PoC scripts and capturing results (logs, screenshots, and Procmon traces).
+
+- **MCP (Model Context Protocol) Integration:** MCP standardizes how AI interacts with tools, services, and data. Instead of writing custom APIs for each function, MCP allows Gemini to control environment provisioning, PoC execution, and logging in a unified way.
+
+- **Seamless Integration with CVE Threat Intelligence Toolkit (Future):** While currently separated for testing, this module will eventually be integrated into the toolkit, enabling a single interface for:
+  - CVE research and analysis.
+  - VMware vulnerable environment auto-build.
+  - Automated PoC execution and Procmon log collection.
+  - AI-driven attack behavior extraction.
+
+**AI-Driven Simulation Architecture**
+The architecture of how Cline works with Gemini and MCP inside VS Code to simulate CVEs is shown below:
+![AI-Driven Simulation Architecture](./img/CVEAutoSimulation.png)
 
 
 

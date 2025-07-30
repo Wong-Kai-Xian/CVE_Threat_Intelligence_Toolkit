@@ -177,7 +177,7 @@ This use case demonstrates that the system is able to extract and explain accura
 
 ---
 
-### AI-Powered Automated CVE Simulation (Future Integration)
+### AI-Powered Automated CVE Simulation
 To further extend the capabilities of the CVE Threat Intelligence Toolkit, we are developing an AI-powered automation module that can automatically build vulnerable virtual environments and simulate CVE exploits. This feature leverages VMware, Cline AI (VS Code Extension), MCP (Model Context Protocol), and Gemini 2.5 Pro to transform CVE analysis from a manual process into a fully automated workflow.
 
 **Features**
@@ -202,6 +202,10 @@ The architecture of how Cline works with Gemini and MCP inside VS Code to simula
 ![AI-Driven Simulation Architecture](./img/CVEAutoSimulation.png)
 
 
+### Conceptual Integration Diagram
 
+The diagram below illustrates how the **CVE Threat Intelligence Toolkit** will integrate with the **AI Auto Simulation Module** in future releases:
+
+![Integration Diagram](./img/ConceptualDiagram.png)
 
 

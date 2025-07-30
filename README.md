@@ -31,7 +31,7 @@ Before you begin, please make sure you have the following:
 ---
 
 ## Table of Contents
-
+TOC
 - [Purpose](#purpose)
 - [System Overview](#system-overview)
 - [Try the System on Google Colab](#try-the-system-on-google-colab)
@@ -47,6 +47,7 @@ Before you begin, please make sure you have the following:
   - [ISO Search Tool Overview](#iso-search-tool-overview)
   - [AI-LLM CVE Behavior Extraction & Analysis](#ai-llm-cve-behavior-extraction--analysis)
   - [Use Case for AI-LLM CVE Behavior Extraction & Analysis](#use-case-for-ai-llm-cve-behavior-extraction--analysis)
+  - [Automated CVE Attack Simulation](#automated-cve-attack-simulation)
 
 
 ---
